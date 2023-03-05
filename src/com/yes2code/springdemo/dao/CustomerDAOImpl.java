@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.yes2code.springdemo.entity.Customer;
 
 @Repository
-public class CustoemrDAOImpl implements CustomerDAO {
+public class CustomerDAOImpl implements CustomerDAO {
 
 	
 	//need to inject the session factory
@@ -22,14 +22,15 @@ public class CustoemrDAOImpl implements CustomerDAO {
 	
 	
 	@Override
-	@Transactional
 	public List<Customer> getCustomers() {
 
 		//get current session
 		Session currentSession = sessionFactory.getCurrentSession();
 		
-		//create query
-		Query<Customer> theQuery = currentSession.createQuery("from Customer", Customer.class);
+		//create query and sort by last name
+		Query<Customer> theQuery = currentSession
+				.createQuery("from Customer order by lastName", 
+				Customer.class);
 		
 		//get list of customers from query
 		List<Customer> customers = theQuery.getResultList();
@@ -38,6 +39,17 @@ public class CustoemrDAOImpl implements CustomerDAO {
 		
 		
 		return customers;
+	}
+
+
+	@Override
+	public void saveCustomer(Customer theCustomer) {
+		//get current hibernate session
+		Session currentSession = sessionFactory.getCurrentSession();
+		
+		//save the customer
+		currentSession.save(theCustomer);
+		
 	}
 
 }

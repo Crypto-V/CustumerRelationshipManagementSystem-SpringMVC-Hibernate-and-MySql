@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 
@@ -8,12 +8,17 @@
 <head>
 
 <title>List of the customers!</title>
+
+<link href="../resources/css/style.css" rel="stylesheet" type="text/css">
+</link>
+
 </head>
 
 
 <body>
 
 	<div id="wrapper">
+	
 		<div id="header">
 			<h2>CRM - Customer RelationSHip Manager</h2>
 
@@ -22,7 +27,12 @@
 
 	<div id="container">
 		<div id="content">
-			<!-- add out the html table here  -->
+			<!-- put new button add customer  -->
+			
+			<input type = "button" value = "Add Customer" 
+				onclick = "window.location.href = 'showFormForAdd'; return false;"
+				class = "add-button"
+			/>
 
 			<table>
 				<tr>
